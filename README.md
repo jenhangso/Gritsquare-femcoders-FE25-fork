@@ -1,4 +1,40 @@
+# Good Vibes 🌈
 
+A positive message board application where users can spread positivity and connect with others through shared messages.
+
+## About
+
+Good Vibes is a vibrant, welcoming message board designed to create a community space for spreading positivity. With a cheerful pastel color palette and bubble-themed design, it's the perfect place to share kind words, encouragement, and good energy with others.
+
+**Let's spread positivity!**
+
+## Features
+
+### Message Board
+- Click on the pink button to add new positive messages to the board
+- Browse messages from the community
+- Pastel color design for a warm, inviting experience in a beautiful bubble-themed layout
+- Share positivte content with others!
+
+### Contact Form
+- Reach out to us with questions or feedback
+- Share your thoughts and suggestions for improving Good Vibes
+
+## Design
+
+- **Theme**: Pastel colors with a bubble aesthetic
+- **Color Palette**: 
+- **Vibe**: Friendly, welcoming, and positive
+
+## Getting Started
+
+1. Navigate to the Good Vibes message board
+2. Click on "Contact" to get in touch with us
+3. Click to add your message to the board
+4. Share the positivity and spread good vibes!
+
+
+*Spread positivity. Share good vibes. Make the world a happier place.* ✨
 
 ## Sources
 <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" id="Facebook--Streamline-Simple-Icons" height="24" width="24">
