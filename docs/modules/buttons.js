@@ -14,7 +14,7 @@ fbtn.addEventListener('click', async(event)=>{
     const date = new Date();
     console.log(date);
     const timeZone = document.querySelector('#timeZone');
-    timeZone.textContent = username + ' joined '+ date;
+    timeZone.textContent = username + ' joined ' + date;
 
     alert('Wellcome '+ username);
    formReset.reset();
@@ -30,3 +30,4 @@ window.addEventListener('click', (event) => {
         menu.classList.remove('active');
     }
 });
+
