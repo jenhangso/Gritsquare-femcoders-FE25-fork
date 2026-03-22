@@ -3,10 +3,10 @@
     flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
-    justify-content: center;
-    min-height: 100dvh;
     justify-content: center; 
     align-items: flex-start;
+    align-content: flex-start;
+    min-height: 100dvh;
 }
 
 .post-it {
@@ -25,6 +25,8 @@
     word-break: break-word;
     overflow: hidden;
     padding-bottom: 1.5rem;
+    transform: rotate(-1.5deg);
+    transform-origin: center;
 }
 
 .post-it::after {
@@ -40,7 +42,7 @@
 @keyframes pop-in {
     0% { 
         transform: scale(0) rotate(0deg); 
-        opacity: 0; 
+        opacity: 0;
     }
     70% { 
         transform: scale(1.1) rotate(-2deg);
@@ -67,15 +69,13 @@
 .like-btn {
     position: absolute;
     bottom: 8px;
-    right: 10px;
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 20px;
+    right: 15px;
+    border: none;
+    background-color: transparent;
     padding: 2px 8px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: transform 0.1s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .like-btn:active {
