@@ -18,7 +18,8 @@
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.1);
     transform: rotate(-1.5deg);
     font-size: 0.9rem;
@@ -27,6 +28,23 @@
     padding-bottom: 1.5rem;
     transform: rotate(-1.5deg);
     transform-origin: center;
+}
+
+/* Style the text paragraph */
+.post-it p {
+    order: 1;  /* Allow text to take remaining space */
+    overflow: auto;  /* Allow text to scroll if needed */
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.post-it img {
+    order: 2;
+    max-width: 70%;  /* Limit GIF width */
+    max-height: 40%;  /* Limit GIF height */
+    object-fit: contain;  /* Keep aspect ratio */
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
 }
 
 .post-it::after {

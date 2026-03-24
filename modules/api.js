@@ -1,5 +1,7 @@
 import { db, msgRef } from "./firebaseconfig.js";
-import { get, push, ref, query, orderByChild, onValue, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+import { push, ref, query, orderByChild, onValue, serverTimestamp, runTransaction } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
+import { censorBadWords } from "./censor.js";
+import { searchGifs, displayGifResults, getSelectedGif, clearSelectedGif } from "./gifapi.js";
 
 const messageContainer = document.querySelector('#messages-display');
 const renderedNotes = new Set();
@@ -17,7 +19,7 @@ function formatTime(timestamp) {
 }
 
 //funktion som hämtar datan från firebase live
- export function liveUpdate() {
+export function liveUpdate() {
     const sortedMessages = query(msgRef, orderByChild('createdAt'));
 
     onValue(sortedMessages, (snapshot) => {
@@ -29,7 +31,7 @@ function formatTime(timestamp) {
             messageList.reverse().forEach((entry) => {
                 const id = entry[0];
                 const message = entry[1]
-                render(message.text, id, message.createdAt, message.likes || 0);
+                render(message.text, id, message.createdAt, message.likes || 0, message.gifUrl);
             });
         }
         else {
@@ -41,17 +43,20 @@ function formatTime(timestamp) {
 liveUpdate();
 
 //funktion som lägger till data i firebase
-export async function addMsg(text) {
-    const result = await push(msgRef, {
+export async function addMsg(text, gifUrl) {
+    const resultData = {
             text: text,
             createdAt: serverTimestamp(),
-            likes: 0
-        });
-        return result.key
+            likes: 0,
+            gifUrl: gifUrl,
+        };
+
+        const result = await push(msgRef, resultData);
+        return result.key;
     }
 
 //function som lägger till DOM-element
-function render(text, id, createdAt, likes) {
+function render(text, id, createdAt, likes, gifUrl) {
     const noteCard = document.createElement('article');
     noteCard.classList.add('post-it')
     
@@ -76,6 +81,15 @@ function render(text, id, createdAt, likes) {
     })
     noteCard.appendChild(likeBtn);
 
+    if (gifUrl) {
+        const gifImg = document.createElement('img');
+        gifImg.src = gifUrl;
+        gifImg.style.maxWidth = '100%';
+        gifImg.style.borderRadius = '8px';
+        gifImg.style.marginBottom = '10px';
+        noteCard.appendChild(gifImg);
+    }
+
     const p = document.createElement('p');
     p.innerText = text;
 
@@ -90,28 +104,68 @@ function render(text, id, createdAt, likes) {
     messageContainer.appendChild(noteCard);
 }
 
-//öppnar och stänger card
+//öppnar och stänger message formulär + guidelines
 const openBtn = document.querySelector('#openCard');
 const card = document.querySelector('#card');
+const guidelinesCard = document.querySelector('#guidelines');
+const closeBtn = document.querySelector('#closeBtn')
+
+let guidelinesManuallyClosed = false; //flagga för om guidelines har stängts av manuellt
 
 openBtn.addEventListener('click', () => {
+    const cardWasHidden = card.classList.contains('hidden') //kollar om formuläret är stängt
+
     card.classList.toggle('hidden');  
+
+    if(cardWasHidden) {
+        //om formuläret öppnades vid 'click'-> visa guidelines
+        if (!guidelinesManuallyClosed){
+            guidelinesCard.classList.remove('hidden');
+        }
+    } else {
+        // om formuläret stängdes vid 'click'-> flagga nollställs och guidelines stängs
+        guidelinesManuallyClosed = false;
+        guidelinesCard.classList.add('hidden') 
+    }
+});
+
+// Stäng guidelines kortet manuellt
+closeBtn.addEventListener('click', () => {
+    guidelinesCard.classList.add('hidden');
+    guidelinesManuallyClosed = true;
 });
 
 
 // message card här (Elin)
 const form = document.querySelector('#msgForm');
 const input = document.querySelector('#messageInput');
+const gifSearchInput = document.querySelector('#gifSearchInput');
+const searchGifBtn = document.querySelector('#searchGifBtn');
+const gifResults = document.querySelector('#gifResults');
 
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+searchGifBtn.addEventListener('click', async () => {
+    clearSelectedGif();
+    const search = gifSearchInput.value.trim();
+    const gifs = await searchGifs(search);
+    displayGifResults(gifs, '#gifResults')
+})
 
-    const text = input.value;
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    if (!text) return;
+  const text = input.value.trim();
+  const gifUrl = getSelectedGif();
+  if (!text) return;
 
-    await addMsg(text);       
+  const censoredText = censorBadWords(text);
 
-    form.reset();
-    card.classList.add('hidden');
+  await addMsg(censoredText, gifUrl);
+
+  form.reset();
+  card.classList.add("hidden");
+  gifSearchInput.value = '';
+  gifResults.innerHTML = '';
+  clearSelectedGif();
+  guidelinesCard.classList.add('hidden') //guidelines stängs
+  guidelinesManuallyClosed = false; // flagga nollställs
 });
