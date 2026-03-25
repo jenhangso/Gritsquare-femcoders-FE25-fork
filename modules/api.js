@@ -13,10 +13,17 @@ function formatTime(timestamp) {
 
     const diff = Date.now() - timestamp;
     const minutes = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
     
     if (minutes < 1) return "Just now";
     if (minutes < 60) return `${minutes}m ago`;
-    return "Earlier";
+    if (hours < 24) return `${hours}h ago`;
+    if (days < 7) return `${days}d ago`;
+    if (weeks < 4) return `${weeks}w ago`
+
+    return;
 }
 
 //funktion som hämtar datan från firebase live
