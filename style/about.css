@@ -5,8 +5,8 @@
 }
 
 .about-box {
-  background-color: white;
-  border: 8px solid #fcab31;
+  background-color: var(--white);
+  border: 8px solid var(--peach);
   border-radius: 20px;
   max-width: 600px;
   width: 100%;
@@ -19,7 +19,7 @@
 
 .about-box h2.rubrik {
   font-size: 60px;
-  color: #ff99c8;
+  color: var(--secondary);
   margin-bottom: 20px;
   margin-top: 0;
 }
@@ -61,11 +61,11 @@
 }
 
 .ruta {
-  background-color: white;
+  background-color: var(--white);
   width: 200px;
   min-height: 200px;
   padding: 30px;
-  border: 5px solid orange;
+  border: 5px solid var(--peach);
   border-radius: 15px;
   margin: 15px auto;
   text-align: center;

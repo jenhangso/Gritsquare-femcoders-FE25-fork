@@ -14,7 +14,7 @@
 }
 
 #leaderBoardList li {
-  background-color: #fcd7ff;
+  background-color: var(--leaderboard);
   margin: 8px 0;
   padding: 10px 15px;
   border-radius: 25px; /* Bubble shape */
@@ -30,5 +30,4 @@
 #leaderboard-list li span.likes {
   float: right;
   font-weight: bold;
-  color: #ff69b4; /* pastellrosa heart */
 }

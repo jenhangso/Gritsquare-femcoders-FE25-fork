@@ -29,6 +29,10 @@ Translate the page feature*
 
 Delay on sending messages, Anti-Spam*
 
+Animation when liking
+
+Charachter limit on message*
+
 Remove messages
 
 **Added by contributor*
@@ -41,12 +45,6 @@ Remove messages
 ### Contact Form
 - Reach out to us with questions or feedback
 - Share your thoughts and suggestions for improving Good Vibes
-
-## Design
-
-- **Theme**: Pastel colors with a bubble aesthetic
-- **Color Palette**: 
-- **Vibe**: Friendly, welcoming, and positive
 
 ## Getting Started
 
@@ -77,3 +75,6 @@ Text limiter [Isabelle](https://github.com/isabelleLj)
 
 
 ## Sources
+[Klipy](https://docs.klipy.com/getting-started)
+[Firebase](https://firebase.google.com/)
+[Google Fonts](https://developers.google.com/fonts/docs/getting_started)
