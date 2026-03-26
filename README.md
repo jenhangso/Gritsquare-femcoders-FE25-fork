@@ -23,6 +23,17 @@ Button to spawn bubbles that can be popped*
 
 Add emojis to your message*
 
+Bubble sound when new message gets added
+
+Translate the page feature*
+
+Delay on sending messages, Anti-Spam*
+
+Animation when liking
+
+Charachter limit on message*
+
+Remove messages
 
 **Added by contributor*
 ### Message Board
@@ -34,12 +45,6 @@ Add emojis to your message*
 ### Contact Form
 - Reach out to us with questions or feedback
 - Share your thoughts and suggestions for improving Good Vibes
-
-## Design
-
-- **Theme**: Pastel colors with a bubble aesthetic
-- **Color Palette**: 
-- **Vibe**: Friendly, welcoming, and positive
 
 ## Getting Started
 
@@ -64,4 +69,12 @@ Button to spawn bubbles that pop when you press them [Elias](https://github.com/
 
 Add emojis to messages [Jack](https://github.com/jackgustafsson)
 
+Anti-spam and translate button [Ali](https://github.com/Hammadi15)
+
+Charachter limiter [Isabelle](https://github.com/isabelleLj)
+
+
 ## Sources
+[Klipy](https://docs.klipy.com/getting-started)
+[Firebase](https://firebase.google.com/)
+[Google Fonts](https://developers.google.com/fonts/docs/getting_started)

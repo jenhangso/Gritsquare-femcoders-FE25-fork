@@ -6,28 +6,123 @@
   --white: #fffef1;
   --peach: #fcab31;
   --darkPeach: #363635;
+  --postitDefault: #d6c5ef;
+  --black: #000000;
+  --darkmodePrimary: #363627ed;
+  --leaderboard: #fcd7ff;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffa8;
-  color: black;
-  min-height: 100vh;
-  font-family: chicle;
-  text-align: center;
-}
+/* DARK MODE STYLING */
 
 body.dark {
   background-color: #363627ed;
 }
 
 body.dark h1 {
-  color: white;
+  color: var(--white);
 }
 
+body.dark p {
+    color: var(--white);
+}
+
+body.dark .post-it p {
+  color: var(--black);
+}
+
+body.dark #guidelines p {
+  color: var(--black);
+}
+
+/* bara la style för att se var darkmode knappen ska vara */
+.dark-mode {
+  width: 1rem;
+  height: 2.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+
+.dark-mode::before,
+.dark-mode::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 35px;
+  background-color: #ff1493;
+  border-radius: 20px 20px 0 0;
+  top: 0;
+}
+
+.dark-mode::before {
+  left: 20px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.dark-mode::after {
+  left: 1px;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* Hover effect */
+.dark-mode:hover::before,
+.dark-mode:hover::after {
+  background-color: #ff69b4;
+  transform-origin: 0 100%;
+}
+
+.dark-mode:hover::after {
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+/* Active effect */
+.dark-mode:active::before,
+.dark-mode:active::after {
+  background-color: #c71585;
+}
+/* BASE STYLING */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--primary-bg);
+  min-height: 100vh;
+  font-family: chicle;
+  text-align: center;
+}
+
+main {
+  flex: 1;
+}
+
+a {
+  text-decoration: none;
+  color: var(--peach);
+}
+
+button {
+    background-color: var(--secondary);
+    font-family: chicle;
+    border: var(--peach) solid 5px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+/* GLOBAL CARD STYLE */
+.card {
+  background-color: var(--white);
+  border: 6px solid var(--peach);
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* NAVIGATION BAR */
 header {
   padding: 0.5rem;
   display: flex;
@@ -35,22 +130,12 @@ header {
   height: 3rem;
 }
 
-main {
-  flex: 1;
-}
-
 .logo {
   width: 16rem;
 }
 
-/* Navigation Bar */
 .desktop-nav {
   display: none;
-}
-
-a {
-  text-decoration: none;
-  color: var(--peach);
 }
 
 /* Dropdown menu */
@@ -95,180 +180,6 @@ a {
   align-self: center;
 }
 
-/* vänster-knapp */
-.left-btn {
-  position: fixed;
-  top: 100px;
-  left: 20px;
-  padding: 15px 15px;
-  border-radius: 50px;
-  background-color: #ec709a;
-  border: 3px solid #ffbd59;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* höger knapp */
-.spawn-btn {
-  position: fixed;
-  top: 100px;
-  right: 20px; /* ← skillnaden */
-  padding: 15px 15px;
-  border-radius: 50px;
-  background-color: #ec709a;
-  border: 3px solid #ffbd59;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* Guidelines-card*/
-#guidelines {
-  position: fixed;
-  top: 150px;
-  left: 320px;
-  background-color: white;
-  border-radius: 30px;
-  border: 6px solid #ffbd59;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 15px;
-  z-index: 1000;
-}
-
-#guidelines h2 {
-  margin-top: 0;
-}
-
-#guidelines button#closeBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #ec709a;
-  border: 4px solid #ffbd59;
-  color: white;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* card/formulär */
-#card {
-  position: fixed;
-  top: 150px;
-  bottom: 200px;
-  left: 20px;
-  background-color: white;
-  padding: 15px;
-  border-radius: 30px;
-  border: solid 6px #ffbd59;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  width: 250px;
-  height: 440px;
-  z-index: 1000;
-}
-
-.hidden {
-  display: none;
-}
-
-#card input {
-  width: 80%;
-  padding: 8px;
-  margin-bottom: 10px;
-  padding-left: 10px;
-  border-radius: 20px;
-  border: 4px solid #ffbd59;
-}
-
-#card button {
-  width: 30%;
-  padding: 8px;
-  background-color: #ec709a;
-  color: white;
-  border: 4px solid #ffbd59;
-  border-radius: 20px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-/*Jack: emojis stylad här*/
-#emojis {
-  border: 4px solid #ffbd59;
-  border-radius: 20px;
-  padding: 8px;
-}
-
-/* Gif styling */
-#gifSearchSection {
-  margin: 10px 0;
-}
-
-#gifSearchInput {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  margin-right: 64px; /*Jack: ändrade även här så att det blev jämnt med input*/
-}
-
-#searchGifBtn {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-#searchGifBtn:hover {
-  background-color: #0056b3;
-}
-
-#gifResults {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 10px 0;
-  overflow-y: auto;
-  width: 100%;
-  height: 100px;
-}
-
-.gif-result {
-  border: 2px solid transparent;
-  border-radius: 8px;
-  transition: all 0.3s;
-}
-
-.gif-result:hover {
-  border-color: #007bff;
-  transform: scale(1.05);
-}
-
-.gif-result img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
-#selectedGifPreview {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 10px 0;
-  width: 100%;
-  height: 100px;
-}
-
-#selectedGifPreview img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  border: 2px solid #007bff;
-}
-
 /* Footer */
 footer {
   padding: 0.5rem;
@@ -284,19 +195,10 @@ footer {
   gap: 1rem;
 }
 
-/* bara la style för att se var darkmode knappen ska vara */
-.dark-mode {
-  background-color: rgb(255, 162, 162);
-  width: 1rem;
-  height: 1rem;
-  border-radius: 2rem;
-}
+/* =================
+Desktop styling 
+================== */
 
-/* Breakpoint tablet */
-@media (min-width: 768px) {
-}
-
-/* Breakpoint desktop */
 @media (min-width: 1024px) {
   header {
     justify-content: center;
@@ -325,13 +227,4 @@ footer {
     display: none !important;
   }
 
-  #card {
-    height: 700px;
-    width: 500px;
-  }
-
-  #gifResults {
-    height: 400px;
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
