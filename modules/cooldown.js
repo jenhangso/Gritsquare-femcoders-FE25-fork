@@ -4,7 +4,7 @@ const submitBtn = form.querySelector('#submitBtn');
 form.addEventListener("submit", () => {
   submitBtn.disabled = true;
 
-  let timeLeft = 3;
+  let timeLeft = 10;
   submitBtn.textContent = `wait ${timeLeft}`;
 
   const countdown = setInterval(() => {

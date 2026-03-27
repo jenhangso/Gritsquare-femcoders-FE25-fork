@@ -1,4 +1,4 @@
-// Dropdown menu btn
+// Dropdown menu button
 const menus = document.querySelectorAll('.mobile-nav');
 
 menus.forEach(nav => {
@@ -19,6 +19,7 @@ menus.forEach(nav => {
     });
 });
 
+
 // Button for dark-mode
 const darkButtons = document.querySelectorAll('.dark-mode');
 
@@ -27,7 +28,3 @@ darkButtons.forEach(btn => {
     document.body.classList.toggle('dark');
   });
 });
-
-
-// Button delete all messages
-

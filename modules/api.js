@@ -96,7 +96,7 @@ function render(text, id, createdAt, likes, gifUrl, color) {
 
     deleteBtn.addEventListener('click', async () => {
         const confirmDelete = confirm("Are you sure you want to remove the good vibes? This cannot be undone.");
-        
+    
         if (confirmDelete) {
             try {
                 const postRef = ref(db, `messages/${id}`);
@@ -109,12 +109,14 @@ function render(text, id, createdAt, likes, gifUrl, color) {
     });
     noteCard.appendChild(deleteBtn);
 
+    // Like button
     const likeBtn = document.createElement('button');
     likeBtn.className = 'like-btn';
     likeBtn.innerHTML = `❤️ <span>${likes}</span>`;
-
+    likeBtn.title = 'Like message';
     likeBtn.style.position = 'relative';
     likeBtn.style.overflow = 'visible';
+
     likeBtn.addEventListener('click', async () => {
         const postRef = ref(db, `messages/${id}/likes`);
         //--------Heart explosion-------
@@ -132,13 +134,8 @@ function render(text, id, createdAt, likes, gifUrl, color) {
                 runTransaction(postRef, (currentLikes) => {
             return (currentLikes || 0) + 1;
         })
-
-
-        },500);
-        
-    }
-)
-
+        },500); 
+    })
     noteCard.appendChild(likeBtn);
 
     if (gifUrl) {
@@ -159,7 +156,6 @@ function render(text, id, createdAt, likes, gifUrl, color) {
         timeLabel.innerText = formatTime(createdAt);
         noteCard.appendChild(timeLabel);
     }
-
     noteCard.appendChild(p);
     messageContainer.appendChild(noteCard);
 }
@@ -231,10 +227,7 @@ form.addEventListener("submit", async (e) => {
 });
 
 
-
 /** Heart explosion */
-
-
   function heartExplosion (container, options = {}){
     
         if(!container) return;
@@ -269,11 +262,6 @@ form.addEventListener("submit", async (e) => {
             setTimeout(() =>{
                 heart.remove();
             },duration);
-
         }
-
-       
     }
-
-
 initColorPicker();
